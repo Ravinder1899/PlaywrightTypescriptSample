@@ -53,7 +53,7 @@ test.describe('Smoke Suite', () => {
         browser.close()
     })
 
-    test('Verify user is able to register and ligin', async () => {
+    test('Verify user is able to register and login', async () => {
         await header.clickRegisterLink()
         await registerPage.userRegisterWithValidData()
         await header.clickLoginLinkAfterUserRegister()
@@ -62,7 +62,7 @@ test.describe('Smoke Suite', () => {
         } catch (error) {
             throw error
         }
-        header.clickLogoutLink()
+        await header.clickLogoutLink()
     })
 
     test('Verify user is able to register, login, add product to cart and complete the checkout process', async () => {
