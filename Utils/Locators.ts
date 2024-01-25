@@ -16,6 +16,7 @@ export default class Locators {
     public static birthYearRegisterInputField: string = 'xpath=//select[@name="DateOfBirthYear"]'
     public static registerButton: string = 'xpath=//button[@id="register-button"]'
     public static registerSuccessMessage: string = 'xpath=//div[@class="result"]'
+    public static registerContinueButton: string = 'xpath=//a[contains(@class,"register-continue-button")]'
 
     //Login page elements
     public static emailLoginInputField: string = 'xpath=//input[@class="email"]'

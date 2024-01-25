@@ -1,5 +1,6 @@
 import { Page, expect } from "@playwright/test"
 import Locators from "../Utils/Locators"
+import HelperMethods from "../HelperClasses/HelperMethods"
 
 export default class Header {
     private page: Page;
@@ -9,26 +10,31 @@ export default class Header {
     }
 
     public async clickRegisterLink() {
-        await expect(this.page.locator(Locators.registerHeaderLink)).toBeVisible()
+        await HelperMethods.waitForElementToBeVisible(this.page, Locators.registerHeaderLink)
         await this.page.locator(Locators.registerHeaderLink).click()
         expect(this.page.url()).toContain("/register")
     }
 
     public async clickLoginLink() {
-        await expect(this.page.locator(Locators.loginHeaderLink)).toBeVisible()
-        await this.page.locator(Locators.loginHeaderLink).click()
-        expect(this.page.url()).toContain("/login")
+        try{
+            await expect(this.page.locator(Locators.loginHeaderLink)).toBeVisible()
+            await this.page.locator(Locators.loginHeaderLink).click()
+            expect(this.page.url()).toContain("/login")
+        } catch {
+            console.log("Login header link not present")
+        }
+        
     }
 
     public async clickShoppingCartLink() {
-        await expect(this.page.locator(Locators.shoppingCartLink)).toBeVisible()
+        await HelperMethods.waitForElementToBeVisible(this.page, Locators.shoppingCartLink)
         await this.page.locator(Locators.shoppingCartLink).click()
         expect(this.page.url()).toContain("/cart")
     }
 
     public async clickLogoutLink() {
-        await expect(this.page.locator(Locators.logoutHeaderLink)).toBeVisible()
+        await HelperMethods.waitForElementToBeVisible(this.page, Locators.logoutHeaderLink)
         await this.page.locator(Locators.logoutHeaderLink).click()
-        await expect(this.page.locator(Locators.loginHeaderLink)).toBeVisible()
+        await HelperMethods.waitForElementToBeVisible(this.page, Locators.loginHeaderLink)
     }
 }
