@@ -15,7 +15,7 @@ export default class Header {
         expect(this.page.url()).toContain("/register")
     }
 
-    public async clickLoginLink() {
+    public async clickLoginLinkAfterUserRegister() {
         try{
             await expect(this.page.locator(Locators.loginHeaderLink)).toBeVisible()
             await this.page.locator(Locators.loginHeaderLink).click()
@@ -23,7 +23,6 @@ export default class Header {
         } catch(error) {
             console.log(error)
         }
-        
     }
 
     public async clickShoppingCartLink() {

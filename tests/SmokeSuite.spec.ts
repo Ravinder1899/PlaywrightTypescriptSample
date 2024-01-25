@@ -57,10 +57,11 @@ test.describe('Smoke Suite', () => {
         await header.clickRegisterLink()
         await registerPage.userRegisterWithValidData()
         try{
-            await header.clickLoginLink()
+            await header.clickLoginLinkAfterUserRegister()
             await loginPage.userLoginWithValidCredentials()
         } catch {
-            console.log("Login header link is not present")   
+            console.log("Login header link is not present")
+            header.clickLogoutLink() 
         }
     })
 
@@ -68,7 +69,7 @@ test.describe('Smoke Suite', () => {
         await header.clickRegisterLink()
         await registerPage.userRegisterWithValidData()
         try{
-            await header.clickLoginLink()
+            await header.clickLoginLinkAfterUserRegister()
             await loginPage.userLoginWithValidCredentials()
         } catch {
             console.log("Login header link is not present")   
