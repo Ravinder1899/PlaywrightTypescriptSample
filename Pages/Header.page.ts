@@ -21,6 +21,7 @@ export default class Header {
             await this.page.locator(Locators.loginHeaderLink).click()
             expect(this.page.url()).toContain("/login")
         } catch(error) {
+            console.log("Login header link not present")
             throw error
         }
     }

@@ -53,26 +53,26 @@ test.describe('Smoke Suite', () => {
         browser.close()
     })
 
-    test('Verify user is able to register and ligin', async () =>{
+    test('Verify user is able to register and ligin', async () => {
         await header.clickRegisterLink()
         await registerPage.userRegisterWithValidData()
-        try{
-            await header.clickLoginLinkAfterUserRegister()
+        await header.clickLoginLinkAfterUserRegister()
+        try {
             await loginPage.userLoginWithValidCredentials()
-        } catch {
-            console.log("Login header link is not present")
-            header.clickLogoutLink() 
+        } catch (error) {
+            throw error
         }
+        header.clickLogoutLink()
     })
 
     test('Verify user is able to register, login, add product to cart and complete the checkout process', async () => {
         await header.clickRegisterLink()
         await registerPage.userRegisterWithValidData()
-        try{
-            await header.clickLoginLinkAfterUserRegister()
+        await header.clickLoginLinkAfterUserRegister()
+        try {
             await loginPage.userLoginWithValidCredentials()
-        } catch {
-            console.log("Login header link is not present")   
+        } catch (error) {
+            throw error
         }
         await homePage.clickDesktopComputerDropdownOption()
         await desktopPage.clickOnDigitalStormPerformancePc()
