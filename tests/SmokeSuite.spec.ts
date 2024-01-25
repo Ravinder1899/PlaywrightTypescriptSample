@@ -3,7 +3,7 @@ import { chromium } from "@playwright/test"
 import TestData from "../TestData/TestData"
 import Locators from "../Utils/Locators"
 import EnvironmentVariables from "../Utils/EnvironmentVariables"
-import CommonMethods from "../HelperMethods/CommonMethods"
+import CommonMethods from "../HelperClasses/CommonMethods"
 import Header from "../Pages/Header.page"
 import RegisterPage from "../Pages/RegisterPage.page"
 import LoginPage from "../Pages/LoginPage.page"
@@ -53,6 +53,14 @@ test.describe('Smoke Suite', () => {
         browser.close()
     })
 
+    test('Verify user is able to register and ligin', async () =>{
+        await header.clickRegisterLink()
+        await registerPage.userRegisterWithValidData()
+        await header.clickLoginLink()
+        await loginPage.userLoginWithValidCredentials()
+        await header.clickLogoutLink()
+    })
+
     test('Verify user is able to register, login, add product to cart and complete the checkout process', async () => {
         await header.clickRegisterLink()
         await registerPage.userRegisterWithValidData()
@@ -60,7 +68,7 @@ test.describe('Smoke Suite', () => {
         await loginPage.userLoginWithValidCredentials()
         await homePage.clickDesktopComputerDropdownOption()
         await desktopPage.clickOnDigitalStormPerformancePc()
-        await productDescriptionPage.addproductToCart()
+        await productDescriptionPage.clickAddToCartButton()
         await header.clickShoppingCartLink()
         await expect(page.locator(Locators.productNameAddedInCart)).toHaveText(TestData.digitalStormPcName)
         await cartPage.checkTermsAndConditionCheckbox()

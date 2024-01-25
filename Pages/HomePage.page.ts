@@ -1,5 +1,6 @@
 import { Page, expect } from "@playwright/test"
 import Locators from "../Utils/Locators"
+import HelperMethods from "../HelperClasses/HelperMethods"
 
 export default class HomePage {
     private page: Page;
@@ -9,9 +10,9 @@ export default class HomePage {
     }
 
     public async clickDesktopComputerDropdownOption() {
-        await expect(this.page.locator(Locators.computerDropdown)).toBeVisible()
+        await HelperMethods.waitForElementToBeVisible(this.page, Locators.computerDropdown)
         await this.page.locator(Locators.computerDropdown).hover()
-        await expect(this.page.locator(Locators.desktopComputerOption)).toBeVisible()
+        await HelperMethods.waitForElementToBeVisible(this.page, Locators.desktopComputerOption)
         await this.page.locator(Locators.desktopComputerOption).click()
 
         expect(this.page.url()).toContain("/desktops")
