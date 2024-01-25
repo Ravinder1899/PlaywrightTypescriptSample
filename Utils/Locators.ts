@@ -37,7 +37,7 @@ export default class Locators {
 
     // Shopping cart page elements
     public static productNameAddedInCart: string = 'xpath=//a[@class="product-name"]'
-    public static termsAndConditionCheckbox: string = 'xpath=//input[@name="termsofserv"]'
+    public static termsAndConditionCheckbox: string = 'xpath=//input[@name="termsofservice"]'
     public static checkoutButton: string = 'xpath=//button[@name="checkout"]'
 
     // Checkout Page elements
